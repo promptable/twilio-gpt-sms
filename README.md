@@ -122,7 +122,7 @@ To get started using Promptable to create and fetch your prompts, go to https://
 
 Then, create and deploy a prompt and fetch it like this
 ```
-const { data } = await axios.get(`https://promptable.ai/api/prompt/${chatHistory.promptId}/deployment/active`);
+const { data } = await axios.get(`https://promptable.ai/api/prompt/<YOUR PROMPT ID HERE>/deployment/active`);
 const { text, configs } = data // get your prompt text and configs
 //... now use it in the chat bot!
 ```
