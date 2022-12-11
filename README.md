@@ -117,6 +117,16 @@ const response = await openai.createCompletion({
 });
 ```
 
+## Promptable Integration
+To get started using Promptable to create and fetch your prompts, go to https://promptable.ai!
+
+Then, create and deploy a prompt and fetch it like this
+```
+const { data } = await axios.get(`https://promptable.ai/api/prompt/${chatHistory.promptId}/deployment/active`);
+const { text, configs } = data // get your prompt text and configs
+//... now use it in the chat bot!
+```
+
 ## TODOs/ Feature Requests
 
 TODO: Add Voice Chats:
