@@ -1,0 +1,17 @@
+{
+    "watch": [
+        "**",
+      "src",
+      ".env"
+    ],
+    "ext": ".ts,.json,.js",
+    "ignore": [
+      "node_modules",
+      "dist",
+      "src/**/*.spec.ts",
+      "src/**/*.test.ts",
+      "src/**/*.spec.js",
+      "src/**/*.test.js"
+    ],
+    "exec": "ts-node -r dotenv/config ./index.ts"
+  }

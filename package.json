@@ -1,0 +1,33 @@
+{
+  "name": "gpt3-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "start": "node --require dotenv/config .",
+    "dev": "nodemon",
+    "gcp-build": "npm run build",
+    "deploy": "export $(cat .env | xargs) && ./deploy.sh"
+  },
+  "keywords": [],
+  "author": "Phil Nash <philnash@twilio.com> (https://philna.sh)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "got": "^11.8.6",
+    "gpt3-tokenizer": "^1.1.4",
+    "openai": "^3.1.0",
+    "ts-node": "^10.9.1",
+    "twilio": "^3.57.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.31",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.2"
+  }
+}
