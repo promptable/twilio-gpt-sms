@@ -16,20 +16,13 @@ Twilio SMS chatbot using GPT3. Based on this [tutorial](https://www.twilio.com/b
 
 ### Create a Twilio Account / Phone Number
 
-Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript).
+Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript). After your account is created, use this command to create a phone number that can receive SMS messages:
 
 ```
 twilio phone-numbers:update PHONE_NUMBER --sms-url https://RANDOM_STRING.ngrok.io/messages
 ```
 
-You'll need to "upgrade" to paid if you want to remove the Twilio branding from the SMS replies.
-
-### Get the code
-
-```bash
-git clone git@github.com:promptable/twilio-gpt3-chat.git
-cd twilio-gpt3-chat
-```
+You'll need the Twilio CLI installed. You'll need to "upgrade" to paid if you want to remove the Twilio branding from the SMS replies.
 
 ### Dependencies
 
