@@ -1,17 +1,19 @@
+/*
+  This is a sample GPT-3 bot that uses the Promptable API to get a prompt and config
+  and then uses the OpenAI API to generate a response.
+
+  If you don't want to use Promptable, you can just hard-code your prompt and config
+  somewhere in this file and replace the call to the Promptable API with a local call.
+*/  
+
 const { Configuration, OpenAIApi } = require("openai");
 import GPT3Tokenizer from "gpt3-tokenizer";
 import axios from 'axios'
 import { ChatHistory, ChatHistoryStore, Turn } from "./chatHistory";
-import Chat from "twilio/lib/rest/Chat";
 
 // AI ASSISTANT BOT: 
 const DEFAULT_AGENT_NAME = "Assistant";
 const DEFAULT_PROMPT_ID = "clbilb0kh0008h7eg8jv8owdu";
-
-// SKINCARE BOT: clbily7vt000jh7egtrawx8jb
-// const DEFAULT_AGENT_NAME = "Assistant";
-// const DEFAULT_PROMPT_ID = "clbily7vt000jh7egtrawx8jb";
-
 
 const tokenizer = new GPT3Tokenizer({ type: "gpt3" });
 
@@ -81,7 +83,7 @@ function getOrCreateChatHistory(phone: string, message: string) {
       chatHistory = store.create(phone, DEFAULT_AGENT_NAME, DEFAULT_PROMPT_ID);
     }
   } else {
-    console.log("RESET CHAT HISTORY!");
+    console.log("RESETTING CHAT HISTORY!");
     console.log(chatHistory);
   }
 }
@@ -118,6 +120,8 @@ export const getReply = async (
   const chatHistory = store.get(phoneNumber);
   console.log("Chat History", chatHistory);
 
+  // Get the prompt and config from the Promptable API
+  // (Optionally) replace this call with a local hard-coded prompt and config
   const { data } = await axios.get(`https://promptable.ai/api/prompt/${chatHistory.promptId}/deployment/active`);
   console.log(data);
 

@@ -1,5 +1,11 @@
 /*
  Memory for storing chat history by phone number
+
+promptId is a Promptable.ai thing. If you're using your own local prompt,
+you can just hard-code the promptId (which is used to identify the prompt)
+if you want to reset/switch between prompts in the chat using the 
+"reset <promptId> <agentName>" command.
+
 */
 
 export type Turn = {

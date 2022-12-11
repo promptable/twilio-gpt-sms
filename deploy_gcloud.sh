@@ -1,3 +1,7 @@
+# This file can be used to deploy to gcloud run
+# However, we recommend Fly.io as it is much easier to use
+# Instructions in README for Fly.io
+
 echo "!!!DEPLOYING!!!"
 
 echo "TWILIO_ACCOUNT_SID is set to: $TWILIO_ACCOUNT_SID"

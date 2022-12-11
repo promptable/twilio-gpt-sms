@@ -10,7 +10,7 @@
     "start": "node --require dotenv/config .",
     "dev": "nodemon",
     "gcp-build": "npm run build",
-    "deploy": "export $(cat .env | xargs) && ./deploy.sh"
+    "deploy": "export $(cat .env | xargs) && ./deploy_gcloud.sh"
   },
   "keywords": [],
   "author": "Phil Nash <philnash@twilio.com> (https://philna.sh)",
