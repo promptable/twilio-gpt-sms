@@ -127,6 +127,11 @@ const { text, configs } = data // get your prompt text and configs
 //... now use it in the chat bot!
 ```
 
+## Other
+
+Get sms messages on your mac.
+https://support.apple.com/guide/messages/get-sms-texts-from-iphone-on-your-mac-icht8a28bb9a/mac
+
 ## TODOs/ Feature Requests
 
 TODO: Add Voice Chats:
