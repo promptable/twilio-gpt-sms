@@ -1,6 +1,6 @@
-# Twilio GPT3 SMS Starter Kit
+# GPT3 SMS Bot Starter Kit
  
-Twilio SMS chatbot using GPT3. Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript).
+GPT3 SMS Bot Starter Kit using Twilio. Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript).
 
 ## Running this project
 
