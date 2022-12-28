@@ -1,6 +1,6 @@
-# Twilio GPT3 SMS Chatbot
+# GPT3 SMS Bot Starter Kit
  
-Twilio SMS chatbot using GPT3. Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript).
+GPT3 SMS Bot Starter Kit using Twilio. Based on this [tutorial](https://www.twilio.com/blog/sms-stocks-bot-twilio-typescript).
 
 ## Running this project
 
@@ -116,6 +116,21 @@ const response = await openai.createCompletion({
   presence_penalty: 0,
 });
 ```
+
+## Promptable Integration
+To get started using Promptable to create and fetch your prompts, go to https://promptable.ai!
+
+Then, create and deploy a prompt and fetch it like this
+```
+const { data } = await axios.get(`https://promptable.ai/api/prompt/<YOUR PROMPT ID HERE>/deployment/active`);
+const { text, configs } = data // get your prompt text and configs
+//... now use it in the chat bot!
+```
+
+## Other
+
+Get sms messages on your mac.
+https://support.apple.com/guide/messages/get-sms-texts-from-iphone-on-your-mac-icht8a28bb9a/mac
 
 ## TODOs/ Feature Requests
 
