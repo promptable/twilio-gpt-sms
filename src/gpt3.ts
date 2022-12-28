@@ -4,14 +4,15 @@
 
   If you don't want to use Promptable, you can just hard-code your prompt and config
   somewhere in this file and replace the call to the Promptable API with a local call.
-*/  
+*/
 
 const { Configuration, OpenAIApi } = require("openai");
 import GPT3Tokenizer from "gpt3-tokenizer";
-import axios from 'axios'
+import axios from "axios";
 import { ChatHistory, ChatHistoryStore, Turn } from "./chatHistory";
+import { PromptableApi } from "promptable";
 
-// AI ASSISTANT BOT: 
+// AI ASSISTANT BOT:
 const DEFAULT_AGENT_NAME = "Assistant";
 const DEFAULT_PROMPT_ID = "clbilb0kh0008h7eg8jv8owdu";
 
@@ -42,7 +43,10 @@ function leftTruncateTranscript(text: string, maxTokens: number): string {
   return decoded;
 }
 
-function injectValuesIntoPrompt(template: string, values: { [key: string]: any }): string {
+function injectValuesIntoPrompt(
+  template: string,
+  values: { [key: string]: any }
+): string {
   let result = template;
   for (const key in values) {
     result = result.replace(new RegExp(`{{${key}}}`, "g"), values[key]);
@@ -51,10 +55,13 @@ function injectValuesIntoPrompt(template: string, values: { [key: string]: any }
 }
 
 /*
-* If the message is "reset" or "reset <promptId> <agentName>", then reset the chat history
-* and return the new chat history. Otherwise, return null.
-*/
-function handlePossibleReset(phone: string, message: string): ChatHistory | null {
+ * If the message is "reset" or "reset <promptId> <agentName>", then reset the chat history
+ * and return the new chat history. Otherwise, return null.
+ */
+function handlePossibleReset(
+  phone: string,
+  message: string
+): ChatHistory | null {
   if (message.trim().toLowerCase() === "reset") {
     const promptId = DEFAULT_PROMPT_ID;
     const agentName = DEFAULT_AGENT_NAME;
@@ -88,11 +95,9 @@ function getOrCreateChatHistory(phone: string, message: string) {
   }
 }
 
-
 function formatChatHistoryTurns(turns: Turn[]) {
   return turns.map((turn) => `${turn.speaker}: ${turn.text}`).join("\n");
 }
-
 
 function formatPromptText(chatHistory: ChatHistory, promptTemplate: string) {
   console.log("PromptTemplate", promptTemplate);
@@ -101,12 +106,11 @@ function formatPromptText(chatHistory: ChatHistory, promptTemplate: string) {
   console.log("turnsText", turnsText);
   console.log("Pre Truncation", turnsText);
   turnsText = leftTruncateTranscript(turnsText, 4000 - numTokens);
-  console.log("Post Truncation", turnsText)
-  const prompt = injectValuesIntoPrompt(promptTemplate, { input: turnsText});
+  console.log("Post Truncation", turnsText);
+  const prompt = injectValuesIntoPrompt(promptTemplate, { input: turnsText });
   console.log("Prompt", prompt);
   return prompt;
 }
-
 
 export const getReply = async (
   message: string,
@@ -122,7 +126,10 @@ export const getReply = async (
 
   // Get the prompt and config from the Promptable API
   // (Optionally) replace this call with a local hard-coded prompt and config
-  const { data } = await axios.get(`https://promptable.ai/api/prompt/${chatHistory.promptId}/deployment/active`);
+  const data = await PromptableApi.getActiveDeployment({
+    promptId: chatHistory.promptId,
+  });
+
   console.log(data);
 
   const prompt = formatPromptText(chatHistory, data.text);
@@ -141,6 +148,6 @@ export const getReply = async (
   store.add(phoneNumber, agentText, chatHistory.agentName);
   console.log(`${chatHistory.agentName}: ${agentText}`);
   return {
-    text: agentText
+    text: agentText,
   } as OpenAIResponse;
 };
